@@ -1,12 +1,4 @@
-/* ╔══════════════════════════════════════╗
-   ║   WAYBAR · Teal & Pink Anime         ║
-   ║                                      ║
-   ║   Palette from wallpaper:            ║
-   ║   bg      #6BBFB5  muted teal        ║
-   ║   surface #EFF8F7  pale teal-white   ║
-   ║   pink    #F2A7B8  soft pink         ║
-   ║   text    #2C3E3D  deep teal-dark    ║
-   ╚══════════════════════════════════════╝ */
+/* WAYBAR - Teal & Pink Anime */
 
 * {
     font-family: 'JetBrains Mono', 'Geist Mono', monospace;
@@ -18,7 +10,7 @@
     min-height: 0;
 }
 
-/* ── Bar Container ───────────────────── */
+/* Bar Container */
 window#waybar {
     background: transparent;
 }
@@ -27,13 +19,11 @@ window#waybar > box {
     background-color: rgba(239, 248, 247, 0.90);
     border: 1px solid rgba(107, 191, 181, 0.50);
     border-radius: 8px;
-    box-shadow:
-        0 2px 20px rgba(107, 191, 181, 0.20),
-        0 0 0 0.5px rgba(107, 191, 181, 0.15);
+    box-shadow: 0 2px 20px rgba(107, 191, 181, 0.20), 0 0 0 0.5px rgba(107, 191, 181, 0.15);
     padding: 0 8px;
 }
 
-/* ── Workspaces ──────────────────────── */
+/* Workspaces */
 #workspaces {
     padding: 0 4px;
 }
@@ -66,7 +56,7 @@ window#waybar > box {
     background: rgba(242, 167, 184, 0.15);
 }
 
-/* ── Clock ───────────────────────────── */
+/* Clock */
 #clock {
     color: #2C3E3D;
     font-weight: 500;
@@ -74,7 +64,7 @@ window#waybar > box {
     padding: 0 12px;
 }
 
-/* ── Right Modules ───────────────────── */
+/* Right Modules */
 #pulseaudio,
 #network,
 #battery,
@@ -100,7 +90,7 @@ window#waybar > box {
 
 #battery.critical {
     color: #c0392b;
-    animation: blink 1.2s linear infinite;
+    font-weight: 500;
 }
 
 #battery.charging {
@@ -115,13 +105,12 @@ window#waybar > box {
     padding: 0 8px;
 }
 
-/* ── Left separator before right modules ─ */
 #pulseaudio {
     border-left: 1px solid rgba(107, 191, 181, 0.30);
     margin-left: 4px;
 }
 
-/* ── Tooltip ─────────────────────────── */
+/* Tooltip */
 tooltip {
     background: rgba(239, 248, 247, 0.98);
     border: 1px solid rgba(107, 191, 181, 0.40);
@@ -133,10 +122,4 @@ tooltip {
 tooltip label {
     font-size: 11px;
     padding: 2px 4px;
-}
-
-/* ── Animation ───────────────────────── */
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
 }

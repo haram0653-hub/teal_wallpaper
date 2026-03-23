@@ -1,0 +1,111 @@
+/* ╔══════════════════════════════════════╗
+   ║   ROFI · Teal & Pink Anime           ║
+   ╚══════════════════════════════════════╝
+
+   Place at: ~/.config/rofi/config.rasi
+*/
+
+configuration {
+    modi:                   "drun,run,filebrowser";
+    show-icons:             false;
+    drun-display-format:    "{name}";
+    display-drun:           "";
+    display-run:            "";
+    display-filebrowser:    "";
+    font:                   "JetBrains Mono 11";
+    kb-cancel:              "Escape,Super+space";
+}
+
+* {
+    /* ── Palette ── */
+    bg:         #EFF8F7;
+    bg-alt:     #D9EFED;
+    fg:         #2C3E3D;
+    fg-dim:     #2C3E3D66;
+    accent:     #6BBFB5;
+    pink:       #F2A7B8;
+    border-col: #6BBFB566;
+    selected-bg:#F2A7B830;
+
+    /* ── Reset ── */
+    background-color:   transparent;
+    text-color:         @fg;
+    border:             0;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+}
+
+window {
+    background-color:   @bg;
+    border:             1px solid @border-col;
+    border-radius:      8px;
+    width:              480px;
+    location:           center;
+    box-shadow:         0 8px 40px rgba(107,191,181,0.18);
+}
+
+mainbox {
+    padding:    8px;
+    children:   [ inputbar, listview ];
+    spacing:    4px;
+}
+
+/* ── Input ── */
+inputbar {
+    background-color:   @bg-alt;
+    border-radius:      4px;
+    padding:            10px 14px;
+    spacing:            8px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent;
+    font:       "JetBrains Mono 11";
+}
+
+entry {
+    placeholder:        "search";
+    placeholder-color:  @fg-dim;
+    cursor-color:       @pink;
+    text-color:         @fg;
+}
+
+/* ── List ── */
+listview {
+    lines:          8;
+    padding:        4px 0;
+    spacing:        2px;
+    scrollbar:      false;
+    fixed-height:   true;
+}
+
+element {
+    padding:        8px 14px;
+    border-radius:  4px;
+    children:       [ element-text ];
+}
+
+element normal.normal {
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+element selected.normal {
+    background-color:   @selected-bg;
+    text-color:         #c47f93;
+    border:             1px solid rgba(242,167,184,0.40);
+    border-radius:      4px;
+}
+
+element alternate.normal {
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    highlight:          bold;
+}

@@ -1,0 +1,9 @@
+# Wallpaper (too large)
+.config/hypr/wallpaper.*
+
+# Secrets
+.config/hypr/private.conf
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,54 @@
+/* WLOGOUT - Teal & Pink Anime */
+
+* {
+    font-family: "JetBrains Mono", monospace;
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(239, 248, 247, 0.92);
+}
+
+button {
+    color: #2C3E3D;
+    background-color: rgba(239, 248, 247, 0.80);
+    border: 1px solid rgba(107, 191, 181, 0.40);
+    border-radius: 8px;
+    margin: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+    transition: all 0.2s ease;
+}
+
+button:focus,
+button:hover {
+    background-color: rgba(242, 167, 184, 0.20);
+    border-color: rgba(242, 167, 184, 0.60);
+    color: #c47f93;
+    outline-style: none;
+}
+
+button:active {
+    background-color: rgba(242, 167, 184, 0.35);
+}
+
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
+}
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}

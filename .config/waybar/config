@@ -12,12 +12,13 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "clock"
+        "mpris"
     ],
     "modules-right": [
         "pulseaudio",
         "network",
         "battery",
+        "clock",
         "tray"
     ],
 
@@ -44,8 +45,11 @@
     "pulseaudio": {
         "format": "vol {volume}%",
         "format-muted": "muted",
-        "on-click": "pavucontrol",
-        "scroll-step": 5
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}' > $XDG_RUNTIME_DIR/wob.sock",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}' > $XDG_RUNTIME_DIR/wob.sock",
+        "scroll-step": 5,
+        "tooltip-format": "{desc}"
     },
 
     "network": {
@@ -66,6 +70,20 @@
         "format-plugged": "{capacity}% ac",
         "format-full": "full",
         "tooltip-format": "{timeTo}"
+    },
+
+    "mpris": {
+        "format": "{player_icon} {title}",
+        "format-paused": "{status_icon} {title}",
+        "player-icons": {
+            "default": "▶",
+            "spotify": "♫"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "max-length": 30,
+        "tooltip-format": "{title} — {artist}"
     },
 
     "tray": {

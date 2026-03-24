@@ -123,3 +123,15 @@ tooltip label {
     font-size: 11px;
     padding: 2px 4px;
 }
+
+/* Mpris */
+#mpris {
+    color: rgba(44, 62, 61, 0.55);
+    padding: 0 12px;
+    font-style: italic;
+    transition: color 0.15s ease;
+}
+
+#mpris:hover {
+    color: #2C3E3D;
+}

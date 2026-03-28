@@ -1,0 +1,72 @@
+# Teal & Pink Anime - btop theme
+# Place at: ~/.config/btop/themes/teal-anime.theme
+
+# Main background
+theme[main_bg]="#EFF8F7"
+
+# Main text color
+theme[main_fg]="#2C3E3D"
+
+# Title color for boxes
+theme[title]="#2C3E3D"
+
+# Highlight color for selected items
+theme[hi_fg]="#6BBFB5"
+
+# Background color of selected item in processes list
+theme[selected_bg]="#F2A7B8"
+
+# Foreground color of selected item in processes list
+theme[selected_fg]="#ffffff"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#8BBAB6"
+
+# Color of text appearing on top of graphs
+theme[graph_text]="#2C3E3D"
+
+# Background of the percentage meters
+theme[meter_bg]="#D9EFED"
+
+# Misc colors for processes
+theme[proc_misc]="#6BBFB5"
+
+# CPU box color
+theme[cpu_box]="#6BBFB5"
+
+# Memory/cache box color
+theme[mem_box]="#F2A7B8"
+
+# Network box color
+theme[net_box]="#6BBFB5"
+
+# Processes box color
+theme[proc_box]="#F2A7B8"
+
+# Divider color between boxes
+theme[div_line]="#C9E8E5"
+
+# Temperature color gradient (cool to hot)
+theme[temp_start]="#6BBFB5"
+theme[temp_mid]="#F2A7B8"
+theme[temp_end]="#c0392b"
+
+# CPU graph color gradient
+theme[cpu_start]="#C9E8E5"
+theme[cpu_mid]="#6BBFB5"
+theme[cpu_end]="#2C3E3D"
+
+# Memory graph color gradient
+theme[mem_start]="#fde8ee"
+theme[mem_mid]="#F2A7B8"
+theme[mem_end]="#c47f93"
+
+# Network graph colors
+theme[net_start]="#C9E8E5"
+theme[net_mid]="#6BBFB5"
+theme[net_end]="#2C3E3D"
+
+# Process color gradient
+theme[proc_start]="#C9E8E5"
+theme[proc_mid]="#6BBFB5"
+theme[proc_end]="#2C3E3D"

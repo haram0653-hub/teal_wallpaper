@@ -1,0 +1,79 @@
+/* TealAnime - Spicetify Theme */
+
+/* Fonts */
+* {
+    font-family: "JetBrains Mono", monospace !important;
+}
+
+/* Rounded cards */
+.main-card-card {
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.main-card-card:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* Sidebar */
+.main-navBar-navBar {
+    background-color: #D9EFED !important;
+    border-right: 1px solid rgba(107, 191, 181, 0.30) !important;
+}
+
+/* Now playing bar */
+.main-nowPlayingBar-nowPlayingBar {
+    background-color: #D9EFED !important;
+    border-top: 1px solid rgba(107, 191, 181, 0.30) !important;
+}
+
+/* Progress bar */
+.playback-progressbar-container {
+    background-color: rgba(107, 191, 181, 0.20) !important;
+}
+
+.playback-progressbar .progress-bar__fg {
+    background-color: #6BBFB5 !important;
+}
+
+/* Active nav link */
+.main-navBar-navBarLink.active {
+    color: #c47f93 !important;
+}
+
+/* Play button */
+.main-playButton-PlayButton {
+    background-color: #6BBFB5 !important;
+}
+
+.main-playButton-PlayButton:hover {
+    background-color: #F2A7B8 !important;
+    transform: scale(1.05) !important;
+}
+
+/* Like button active */
+.main-addButton-button[aria-checked="true"] {
+    color: #F2A7B8 !important;
+}
+
+/* Search bar */
+.x-searchInput-searchInputInput {
+    background-color: #D9EFED !important;
+    border: 1px solid rgba(107, 191, 181, 0.40) !important;
+    border-radius: 4px !important;
+    color: #2C3E3D !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(107, 191, 181, 0.40) !important;
+    border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6BBFB5 !important;
+}

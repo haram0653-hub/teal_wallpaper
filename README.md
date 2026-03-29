@@ -7,9 +7,9 @@
 
 ---
 
-## Preview
+## Color Palette
 
-| Role        | Hex       | Preview         |
+| Role        | Hex       | Description     |
 |-------------|-----------|-----------------|
 | Background  | `#6BBFB5` | Muted teal      |
 | Surface     | `#EFF8F7` | Pale teal-white |
@@ -23,75 +23,75 @@
 ## Stack
 
 ### Core
-| App          | Role                        | Source     |
-|--------------|-----------------------------|------------|
-| Hyprland     | Wayland compositor / WM     | `extra`    |
-| Hyprpaper    | Wallpaper daemon            | `extra`    |
-| Hypridle     | Idle daemon                 | `extra`    |
+| App       | Role                     | Source  |
+|-----------|--------------------------|---------|
+| Hyprland  | Wayland compositor / WM  | `extra` |
+| Hyprpaper | Wallpaper daemon         | `extra` |
+| Hypridle  | Idle daemon              | `extra` |
+| Hyprlock  | Lock screen              | `extra` |
 
 ### Bar & Launcher
-| App     | Role                              | Source  |
-|---------|-----------------------------------|---------|
-| Waybar  | Status bar (floating pill)        | `extra` |
-| Rofi    | App launcher                      | `extra` |
+| App    | Role                       | Source  |
+|--------|----------------------------|---------|
+| Waybar | Status bar (floating pill) | `extra` |
+| Rofi   | App launcher               | `extra` |
 
 ### Terminal
-| App     | Role                              | Source  |
-|---------|-----------------------------------|---------|
-| Kitty   | Terminal emulator                 | `extra` |
+| App   | Role              | Source  |
+|-------|-------------------|---------|
+| Kitty | Terminal emulator | `extra` |
 
 ### Notifications
-| App    | Role                              | Source  |
-|--------|-----------------------------------|---------|
-| Swaync | Notification daemon + center      | `extra` |
+| App    | Role                         | Source  |
+|--------|------------------------------|---------|
+| Swaync | Notification daemon + center | `extra` |
 
-### System Info
-| App        | Role                          | Source  |
-|------------|-------------------------------|---------|
-| Fastfetch  | System info fetch             | `extra` |
+### System Info & Monitoring
+| App       | Role                  | Source  |
+|-----------|-----------------------|---------|
+| Fastfetch | System info fetch     | `extra` |
+| Btop      | Resource monitor      | `extra` |
 
 ### Volume OSD
-| App  | Role                               | Source  |
-|------|------------------------------------|---------|
-| Wob  | Volume / brightness overlay bar    | `extra` |
+| App | Role                            | Source  |
+|-----|---------------------------------|---------|
+| Wob | Volume / brightness overlay bar | `extra` |
 
 ### Power Menu
-| App     | Role                              | Source |
-|---------|-----------------------------------|--------|
-| Wlogout | Graphical logout / power menu     | `AUR`  |
+| App     | Role                         | Source |
+|---------|------------------------------|--------|
+| Wlogout | Graphical logout / power menu | `AUR`  |
 
 ### Calendar
-| App         | Role                          | Source  |
-|-------------|-------------------------------|---------|
-| Gsimplecal  | Minimal calendar popup        | `extra` |
+| App        | Role                  | Source  |
+|------------|-----------------------|---------|
+| Gsimplecal | Minimal calendar popup | `extra` |
 
 ### Media
-| App        | Role                           | Source  |
-|------------|--------------------------------|---------|
-| Playerctl  | Media player controller        | `extra` |
+| App       | Role                    | Source  |
+|-----------|-------------------------|---------|
+| Playerctl | Media player controller | `extra` |
 
 ### Screenshot
-| App        | Role                           | Source  |
-|------------|--------------------------------|---------|
-| Hyprshot   | Screenshot tool                | `AUR`   |
+| App      | Role            | Source |
+|----------|-----------------|--------|
+| Hyprshot | Screenshot tool | `AUR`  |
 
 ### Fonts
-| Font                  | Used in                    | Source             |
-|-----------------------|----------------------------|--------------------|
-| JetBrains Mono        | Kitty, Waybar, Rofi        | `ttf-jetbrains-mono` |
-| Geist Mono (fallback) | Waybar                     | `ttf-geist-mono-nerd` |
+| Font                  | Used in             | Source                |
+|-----------------------|---------------------|-----------------------|
+| JetBrains Mono        | Kitty, Waybar, Rofi | `ttf-jetbrains-mono`  |
+| Geist Mono (fallback) | Waybar              | `ttf-geist-mono-nerd` |
 
 ---
 
 ## Dependencies
 
-Install all at once:
-
 ```bash
 # Official repos
-sudo pacman -S hyprland hyprpaper hypridle waybar rofi kitty \
-               swaync fastfetch playerctl gsimplecal \
-               ttf-jetbrains-mono brightnessctl
+sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
+               swaync fastfetch btop playerctl gsimplecal \
+               ttf-jetbrains-mono brightnessctl wpctl
 
 # AUR
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
@@ -107,6 +107,8 @@ dotfiles/
 │   ├── hypr/
 │   │   ├── hyprland.conf       # Main Hyprland config
 │   │   ├── hyprpaper.conf      # Wallpaper config
+│   │   ├── hyprlock.conf       # Lock screen config
+│   │   ├── hypridle.conf       # Idle daemon config
 │   │   ├── launch-wob.sh       # WOB volume OSD launcher
 │   │   └── wallpaper/
 │   │       └── wallpaper.png   # Wallpaper (not tracked by git)
@@ -119,11 +121,18 @@ dotfiles/
 │   │   └── kitty.conf          # Kitty terminal theme
 │   ├── fastfetch/
 │   │   └── config.jsonc        # Fastfetch layout and colors
+│   ├── btop/
+│   │   ├── btop.conf           # Btop config
+│   │   └── themes/
+│   │       └── teal-anime.theme # Btop teal pink theme
 │   ├── wob/
 │   │   └── wob.ini             # Volume OSD theme
 │   ├── wlogout/
 │   │   ├── layout              # Power menu button layout
 │   │   └── style.css           # Power menu theme
+│   ├── swaync/
+│   │   ├── config.json         # Swaync config
+│   │   └── style.css           # Swaync notification theme
 │   └── gtk-3.0/
 │       └── gtk.css             # GTK app theming (gsimplecal etc.)
 ├── .gitignore
@@ -144,8 +153,8 @@ cd teal_wallpaper/dotfiles
 ### 2. Install dependencies
 
 ```bash
-sudo pacman -S hyprland hyprpaper hypridle waybar rofi kitty \
-               swaync fastfetch playerctl gsimplecal \
+sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
+               swaync fastfetch btop playerctl gsimplecal \
                ttf-jetbrains-mono brightnessctl
 
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
@@ -154,18 +163,24 @@ yay -S wlogout wob ttf-geist-mono-nerd hyprshot
 ### 3. Symlink configs
 
 ```bash
-ln -s $(pwd)/.config/hypr      ~/.config/hypr
-ln -s $(pwd)/.config/waybar    ~/.config/waybar
-ln -s $(pwd)/.config/rofi      ~/.config/rofi
-ln -s $(pwd)/.config/kitty     ~/.config/kitty
-ln -s $(pwd)/.config/fastfetch ~/.config/fastfetch
-ln -s $(pwd)/.config/wob       ~/.config/wob
-ln -s $(pwd)/.config/wlogout   ~/.config/wlogout
+DOTFILES=$(pwd)
+
+ln -s $DOTFILES/.config/hypr      ~/.config/hypr
+ln -s $DOTFILES/.config/waybar    ~/.config/waybar
+ln -s $DOTFILES/.config/rofi      ~/.config/rofi
+ln -s $DOTFILES/.config/kitty     ~/.config/kitty
+ln -s $DOTFILES/.config/fastfetch ~/.config/fastfetch
+ln -s $DOTFILES/.config/btop      ~/.config/btop
+ln -s $DOTFILES/.config/wob       ~/.config/wob
+ln -s $DOTFILES/.config/wlogout   ~/.config/wlogout
+ln -s $DOTFILES/.config/swaync    ~/.config/swaync
+ln -s $DOTFILES/.config/gtk-3.0   ~/.config/gtk-3.0
 ```
 
 ### 4. Add wallpaper
 
 ```bash
+mkdir -p ~/.config/hypr/wallpaper
 cp /path/to/your/wallpaper.png ~/.config/hypr/wallpaper/wallpaper.png
 ```
 
@@ -185,38 +200,58 @@ Hyprland
 
 ## Keybinds
 
-| Keys                | Action                    |
-|---------------------|---------------------------|
-| `SUPER + Return`    | Open Kitty                |
-| `SUPER + Space`     | Rofi launcher             |
-| `SUPER + Q`         | Kill window               |
-| `SUPER + F`         | Fullscreen                |
-| `SUPER + T`         | Toggle float              |
-| `SUPER + E`         | File manager (Dolphin)    |
-| `SUPER + P`         | Pseudo tile               |
-| `SUPER + J`         | Toggle split              |
-| `SUPER + S`         | Scratchpad                |
-| `SUPER + SHIFT + E` | Power menu (wlogout)      |
-| `SUPER + SHIFT + B` | Reload Waybar             |
-| `SUPER + 1–9`       | Switch workspace          |
-| `SUPER + SHIFT + 1–9` | Move to workspace       |
-| `Print`             | Screenshot region         |
-| `SHIFT + Print`     | Screenshot window         |
-| `FN + Vol Up/Down`  | Volume + WOB OSD          |
-| `FN + Mute`         | Toggle mute               |
-| `FN + Play/Pause`   | Media play/pause          |
-| `FN + Next/Prev`    | Media next/previous       |
+### Window Management
+| Keys                    | Action              |
+|-------------------------|---------------------|
+| `SUPER + Return`        | Open Kitty          |
+| `SUPER + Q`             | Kill window         |
+| `SUPER + F`             | Fullscreen          |
+| `SUPER + T`             | Toggle float        |
+| `SUPER + P`             | Pseudo tile         |
+| `SUPER + J`             | Toggle split        |
+| `SUPER + S`             | Scratchpad          |
+| `SUPER + Arrow keys`    | Move focus          |
+
+### Apps
+| Keys                    | Action                   |
+|-------------------------|--------------------------|
+| `SUPER + Space`         | Rofi launcher            |
+| `SUPER + E`             | File manager (Dolphin)   |
+| `SUPER + L`             | Lock screen (hyprlock)   |
+| `SUPER + SHIFT + E`     | Power menu (wlogout)     |
+| `SUPER + SHIFT + N`     | Notification center      |
+| `SUPER + SHIFT + B`     | Reload Waybar            |
+
+### Workspaces
+| Keys                    | Action                |
+|-------------------------|-----------------------|
+| `SUPER + 1–9`           | Switch workspace      |
+| `SUPER + SHIFT + 1–9`   | Move to workspace     |
+| `SUPER + scroll`        | Cycle workspaces      |
+
+### Media & System
+| Keys                    | Action                |
+|-------------------------|-----------------------|
+| `Print`                 | Screenshot region     |
+| `SHIFT + Print`         | Screenshot window     |
+| `FN + Vol Up/Down`      | Volume + WOB OSD      |
+| `FN + Mute`             | Toggle mute           |
+| `FN + Play/Pause`       | Media play/pause      |
+| `FN + Next/Prev`        | Media next/previous   |
+| `FN + Brightness Up/Down` | Screen brightness   |
 
 ---
 
 ## Theme Switcher
 
-A bash script to switch between themes is available at `~/Projects/theme-switch.sh`:
+Switch between themes using the switcher script:
 
 ```bash
 ~/Projects/theme-switch.sh
 ```
 
 Options:
-- `1` — Classic theme
+- `1` — Classic theme (groot wallpaper)
 - `2` — Teal Anime theme (this rice)
+
+The script automatically relinks all symlinks, changes the wallpaper and restarts waybar.

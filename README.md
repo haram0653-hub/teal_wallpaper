@@ -23,12 +23,12 @@
 ## Stack
 
 ### Core
-| App       | Role                     | Source  |
-|-----------|--------------------------|---------|
-| Hyprland  | Wayland compositor / WM  | `extra` |
-| Hyprpaper | Wallpaper daemon         | `extra` |
-| Hypridle  | Idle daemon              | `extra` |
-| Hyprlock  | Lock screen              | `extra` |
+| App       | Role                    | Source  |
+|-----------|-------------------------|---------|
+| Hyprland  | Wayland compositor / WM | `extra` |
+| Hyprpaper | Wallpaper daemon        | `extra` |
+| Hypridle  | Idle daemon             | `extra` |
+| Hyprlock  | Lock screen             | `extra` |
 
 ### Bar & Launcher
 | App    | Role                       | Source  |
@@ -47,10 +47,10 @@
 | Swaync | Notification daemon + center | `extra` |
 
 ### System Info & Monitoring
-| App       | Role                  | Source  |
-|-----------|-----------------------|---------|
-| Fastfetch | System info fetch     | `extra` |
-| Btop      | Resource monitor      | `extra` |
+| App       | Role              | Source  |
+|-----------|-------------------|---------|
+| Fastfetch | System info fetch | `extra` |
+| Btop      | Resource monitor  | `extra` |
 
 ### Volume OSD
 | App | Role                            | Source  |
@@ -58,13 +58,13 @@
 | Wob | Volume / brightness overlay bar | `extra` |
 
 ### Power Menu
-| App     | Role                         | Source |
-|---------|------------------------------|--------|
+| App     | Role                          | Source |
+|---------|-------------------------------|--------|
 | Wlogout | Graphical logout / power menu | `AUR`  |
 
 ### Calendar
-| App        | Role                  | Source  |
-|------------|-----------------------|---------|
+| App        | Role                   | Source  |
+|------------|------------------------|---------|
 | Gsimplecal | Minimal calendar popup | `extra` |
 
 ### Media
@@ -76,6 +76,12 @@
 | App      | Role            | Source |
 |----------|-----------------|--------|
 | Hyprshot | Screenshot tool | `AUR`  |
+
+### Music
+| App       | Role                    | Source |
+|-----------|-------------------------|--------|
+| Spotify   | Music streaming         | `AUR`  |
+| Spicetify | Spotify theme engine    | manual |
 
 ### Fonts
 | Font                  | Used in             | Source                |
@@ -91,10 +97,13 @@
 # Official repos
 sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
                swaync fastfetch btop playerctl gsimplecal \
-               ttf-jetbrains-mono brightnessctl wpctl
+               ttf-jetbrains-mono brightnessctl spotify
 
 # AUR
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
+
+# Spicetify
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 ```
 
 ---
@@ -105,36 +114,41 @@ yay -S wlogout wob ttf-geist-mono-nerd hyprshot
 dotfiles/
 ├── .config/
 │   ├── hypr/
-│   │   ├── hyprland.conf       # Main Hyprland config
-│   │   ├── hyprpaper.conf      # Wallpaper config
-│   │   ├── hyprlock.conf       # Lock screen config
-│   │   ├── hypridle.conf       # Idle daemon config
-│   │   ├── launch-wob.sh       # WOB volume OSD launcher
+│   │   ├── hyprland.conf         # Main Hyprland config
+│   │   ├── hyprpaper.conf        # Wallpaper config
+│   │   ├── hyprlock.conf         # Lock screen config
+│   │   ├── hypridle.conf         # Idle daemon config
+│   │   ├── launch-wob.sh         # WOB volume OSD launcher
 │   │   └── wallpaper/
-│   │       └── wallpaper.png   # Wallpaper (not tracked by git)
+│   │       └── wallpaper.png     # Wallpaper (not tracked by git)
 │   ├── waybar/
-│   │   ├── config              # Waybar modules config
-│   │   └── style.css           # Waybar theme
+│   │   ├── config                # Waybar modules config
+│   │   └── style.css             # Waybar theme
 │   ├── rofi/
-│   │   └── config.rasi         # Rofi launcher theme
+│   │   └── config.rasi           # Rofi launcher theme
 │   ├── kitty/
-│   │   └── kitty.conf          # Kitty terminal theme
+│   │   └── kitty.conf            # Kitty terminal theme
 │   ├── fastfetch/
-│   │   └── config.jsonc        # Fastfetch layout and colors
+│   │   └── config.jsonc          # Fastfetch layout and colors
 │   ├── btop/
-│   │   ├── btop.conf           # Btop config
+│   │   ├── btop.conf             # Btop config
 │   │   └── themes/
-│   │       └── teal-anime.theme # Btop teal pink theme
+│   │       └── teal-anime.theme  # Btop teal pink theme
 │   ├── wob/
-│   │   └── wob.ini             # Volume OSD theme
+│   │   └── wob.ini               # Volume OSD theme
 │   ├── wlogout/
-│   │   ├── layout              # Power menu button layout
-│   │   └── style.css           # Power menu theme
+│   │   ├── layout                # Power menu button layout
+│   │   └── style.css             # Power menu theme
 │   ├── swaync/
-│   │   ├── config.json         # Swaync config
-│   │   └── style.css           # Swaync notification theme
+│   │   ├── config.json           # Swaync config
+│   │   └── style.css             # Swaync notification theme
+│   ├── spicetify/
+│   │   └── Themes/
+│   │       └── TealAnime/
+│   │           ├── color.ini     # Spotify color scheme
+│   │           └── user.css      # Spotify custom CSS
 │   └── gtk-3.0/
-│       └── gtk.css             # GTK app theming (gsimplecal etc.)
+│       └── gtk.css               # GTK app theming (gsimplecal etc.)
 ├── .gitignore
 └── README.md
 ```
@@ -155,9 +169,13 @@ cd teal_wallpaper/dotfiles
 ```bash
 sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
                swaync fastfetch btop playerctl gsimplecal \
-               ttf-jetbrains-mono brightnessctl
+               ttf-jetbrains-mono brightnessctl spotify
 
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
+
+# Spicetify
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
+source ~/.bashrc
 ```
 
 ### 3. Symlink configs
@@ -190,7 +208,23 @@ cp /path/to/your/wallpaper.png ~/.config/hypr/wallpaper/wallpaper.png
 chmod +x ~/.config/hypr/launch-wob.sh
 ```
 
-### 6. Launch Hyprland
+### 6. Apply Spicetify theme
+
+```bash
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+spicetify backup apply
+
+mkdir -p ~/.config/spicetify/Themes/TealAnime
+cp $DOTFILES/.config/spicetify/Themes/TealAnime/color.ini ~/.config/spicetify/Themes/TealAnime/
+cp $DOTFILES/.config/spicetify/Themes/TealAnime/user.css ~/.config/spicetify/Themes/TealAnime/
+
+spicetify config current_theme TealAnime
+spicetify config color_scheme TealAnime
+spicetify apply
+```
+
+### 7. Launch Hyprland
 
 ```bash
 Hyprland
@@ -201,43 +235,43 @@ Hyprland
 ## Keybinds
 
 ### Window Management
-| Keys                    | Action              |
-|-------------------------|---------------------|
-| `SUPER + Return`        | Open Kitty          |
-| `SUPER + Q`             | Kill window         |
-| `SUPER + F`             | Fullscreen          |
-| `SUPER + T`             | Toggle float        |
-| `SUPER + P`             | Pseudo tile         |
-| `SUPER + J`             | Toggle split        |
-| `SUPER + S`             | Scratchpad          |
-| `SUPER + Arrow keys`    | Move focus          |
+| Keys                 | Action           |
+|----------------------|------------------|
+| `SUPER + Return`     | Open Kitty       |
+| `SUPER + Q`          | Kill window      |
+| `SUPER + F`          | Fullscreen       |
+| `SUPER + T`          | Toggle float     |
+| `SUPER + P`          | Pseudo tile      |
+| `SUPER + J`          | Toggle split     |
+| `SUPER + S`          | Scratchpad       |
+| `SUPER + Arrow keys` | Move focus       |
 
 ### Apps
-| Keys                    | Action                   |
-|-------------------------|--------------------------|
-| `SUPER + Space`         | Rofi launcher            |
-| `SUPER + E`             | File manager (Dolphin)   |
-| `SUPER + L`             | Lock screen (hyprlock)   |
-| `SUPER + SHIFT + E`     | Power menu (wlogout)     |
-| `SUPER + SHIFT + N`     | Notification center      |
-| `SUPER + SHIFT + B`     | Reload Waybar            |
+| Keys                | Action                        |
+|---------------------|-------------------------------|
+| `SUPER + Space`     | Rofi launcher                 |
+| `SUPER + E`         | File manager (Dolphin)        |
+| `SUPER + L`         | Lock screen (hyprlock)        |
+| `SUPER + SHIFT + E` | Power menu (wlogout)          |
+| `SUPER + SHIFT + N` | Notification center (swaync)  |
+| `SUPER + SHIFT + B` | Reload Waybar                 |
 
 ### Workspaces
-| Keys                    | Action                |
-|-------------------------|-----------------------|
-| `SUPER + 1–9`           | Switch workspace      |
-| `SUPER + SHIFT + 1–9`   | Move to workspace     |
-| `SUPER + scroll`        | Cycle workspaces      |
+| Keys                  | Action            |
+|-----------------------|-------------------|
+| `SUPER + 1–9`         | Switch workspace  |
+| `SUPER + SHIFT + 1–9` | Move to workspace |
+| `SUPER + scroll`      | Cycle workspaces  |
 
 ### Media & System
-| Keys                    | Action                |
-|-------------------------|-----------------------|
-| `Print`                 | Screenshot region     |
-| `SHIFT + Print`         | Screenshot window     |
-| `FN + Vol Up/Down`      | Volume + WOB OSD      |
-| `FN + Mute`             | Toggle mute           |
-| `FN + Play/Pause`       | Media play/pause      |
-| `FN + Next/Prev`        | Media next/previous   |
+| Keys                      | Action              |
+|---------------------------|---------------------|
+| `Print`                   | Screenshot region   |
+| `SHIFT + Print`           | Screenshot window   |
+| `FN + Vol Up/Down`        | Volume + WOB OSD    |
+| `FN + Mute`               | Toggle mute         |
+| `FN + Play/Pause`         | Media play/pause    |
+| `FN + Next/Prev`          | Media next/previous |
 | `FN + Brightness Up/Down` | Screen brightness   |
 
 ---
@@ -255,3 +289,11 @@ Options:
 - `2` — Teal Anime theme (this rice)
 
 The script automatically relinks all symlinks, changes the wallpaper and restarts waybar.
+
+---
+
+## Notes
+
+- Spicetify theme is **not symlinked** — copy it manually after cloning (see step 6)
+- Wallpaper is **not tracked by git** — add it manually after cloning (see step 4)
+- Theme switcher script lives at `~/Projects/theme-switch.sh` — not inside the dotfiles repo

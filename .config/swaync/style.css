@@ -1,0 +1,183 @@
+/* SWAYNC - Teal & Pink Anime */
+
+* {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+}
+
+/* Notification Center Panel */
+.control-center {
+    background-color: rgba(239, 248, 247, 0.96);
+    border: 1px solid rgba(107, 191, 181, 0.50);
+    border-radius: 12px;
+    padding: 8px;
+    margin: 8px;
+    box-shadow: 0 4px 24px rgba(107, 191, 181, 0.15);
+}
+
+/* Individual notification */
+.notification-row {
+    outline: none;
+    margin: 4px 0;
+}
+
+.notification {
+    background-color: #EFF8F7;
+    border: 1px solid rgba(107, 191, 181, 0.35);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 2px 0;
+    transition: all 0.15s ease;
+}
+
+.notification:hover {
+    background-color: #D9EFED;
+    border-color: rgba(107, 191, 181, 0.60);
+}
+
+/* Notification urgency levels */
+.notification.low {
+    border-left: 3px solid #6BBFB5;
+}
+
+.notification.normal {
+    border-left: 3px solid #6BBFB5;
+}
+
+.notification.critical {
+    border-left: 3px solid #F2A7B8;
+    background-color: rgba(242, 167, 184, 0.08);
+}
+
+/* Notification content */
+.notification-content {
+    padding: 0;
+}
+
+.notification-default-action {
+    padding: 0;
+    border-radius: 8px;
+    background: transparent;
+}
+
+.notification-default-action:hover {
+    background: transparent;
+}
+
+/* Summary / title */
+.summary {
+    color: #2C3E3D;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Body text */
+.body {
+    color: rgba(44, 62, 61, 0.75);
+    font-size: 11px;
+}
+
+/* App name */
+.app-name {
+    color: #6BBFB5;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+/* Timestamp */
+.time {
+    color: rgba(44, 62, 61, 0.45);
+    font-size: 10px;
+}
+
+/* Close button */
+.close-button {
+    background: transparent;
+    color: rgba(44, 62, 61, 0.40);
+    border-radius: 4px;
+    padding: 2px 6px;
+    transition: all 0.15s ease;
+}
+
+.close-button:hover {
+    background: rgba(242, 167, 184, 0.25);
+    color: #c47f93;
+}
+
+/* Action buttons */
+.notification-action {
+    background-color: rgba(107, 191, 181, 0.12);
+    color: #2C3E3D;
+    border: 1px solid rgba(107, 191, 181, 0.30);
+    border-radius: 4px;
+    padding: 4px 10px;
+    margin: 4px 2px 0;
+    transition: all 0.15s ease;
+}
+
+.notification-action:hover {
+    background-color: rgba(107, 191, 181, 0.25);
+    border-color: rgba(107, 191, 181, 0.60);
+}
+
+/* Control center header */
+.widget-title {
+    color: #2C3E3D;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 4px;
+}
+
+.widget-title > button {
+    background: transparent;
+    color: rgba(44, 62, 61, 0.50);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    transition: all 0.15s ease;
+}
+
+.widget-title > button:hover {
+    background: rgba(242, 167, 184, 0.20);
+    color: #c47f93;
+}
+
+/* Do not disturb toggle */
+.widget-dnd {
+    padding: 4px;
+}
+
+.widget-dnd > switch {
+    background: rgba(107, 191, 181, 0.20);
+    border: 1px solid rgba(107, 191, 181, 0.40);
+    border-radius: 12px;
+}
+
+.widget-dnd > switch:checked {
+    background: #6BBFB5;
+}
+
+.widget-dnd > switch slider {
+    background: #EFF8F7;
+    border-radius: 10px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+/* Notification popup (outside control center) */
+.notification-popup {
+    background-color: rgba(239, 248, 247, 0.96);
+    border: 1px solid rgba(107, 191, 181, 0.50);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px;
+    box-shadow: 0 4px 20px rgba(107, 191, 181, 0.18);
+}
+
+.notification-popup.critical {
+    border-color: rgba(242, 167, 184, 0.70);
+    border-left: 3px solid #F2A7B8;
+}

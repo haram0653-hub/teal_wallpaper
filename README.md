@@ -37,9 +37,10 @@
 | Rofi   | App launcher               | `extra` |
 
 ### Terminal
-| App   | Role              | Source  |
-|-------|-------------------|---------|
-| Kitty | Terminal emulator | `extra` |
+| App      | Role              | Source  |
+|----------|-------------------|---------|
+| Kitty    | Terminal emulator | `extra` |
+| Starship | Shell prompt      | `extra` |
 
 ### Notifications
 | App    | Role                         | Source  |
@@ -78,16 +79,16 @@
 | Hyprshot | Screenshot tool | `AUR`  |
 
 ### Music
-| App       | Role                    | Source |
-|-----------|-------------------------|--------|
-| Spotify   | Music streaming         | `AUR`  |
-| Spicetify | Spotify theme engine    | manual |
+| App       | Role                 | Source |
+|-----------|----------------------|--------|
+| Spotify   | Music streaming      | `AUR`  |
+| Spicetify | Spotify theme engine | manual |
 
 ### Fonts
-| Font                  | Used in             | Source                |
-|-----------------------|---------------------|-----------------------|
-| JetBrains Mono        | Kitty, Waybar, Rofi | `ttf-jetbrains-mono`  |
-| Geist Mono (fallback) | Waybar              | `ttf-geist-mono-nerd` |
+| Font                  | Used in             | Source                      |
+|-----------------------|---------------------|-----------------------------|
+| JetBrainsMono Nerd Font | Kitty, Waybar, Rofi, Starship | `ttf-jetbrains-mono-nerd` |
+| Geist Mono (fallback) | Waybar              | `ttf-geist-mono-nerd`       |
 
 ---
 
@@ -96,8 +97,8 @@
 ```bash
 # Official repos
 sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
-               swaync fastfetch btop playerctl gsimplecal \
-               ttf-jetbrains-mono brightnessctl spotify
+               swaync fastfetch btop playerctl gsimplecal starship \
+               ttf-jetbrains-mono-nerd brightnessctl spotify
 
 # AUR
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
@@ -128,6 +129,8 @@ dotfiles/
 │   │   └── config.rasi           # Rofi launcher theme
 │   ├── kitty/
 │   │   └── kitty.conf            # Kitty terminal theme
+│   ├── starship/
+│   │   └── starship.toml         # Starship prompt theme
 │   ├── fastfetch/
 │   │   └── config.jsonc          # Fastfetch layout and colors
 │   ├── btop/
@@ -168,8 +171,8 @@ cd teal_wallpaper/dotfiles
 
 ```bash
 sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
-               swaync fastfetch btop playerctl gsimplecal \
-               ttf-jetbrains-mono brightnessctl spotify
+               swaync fastfetch btop playerctl gsimplecal starship \
+               ttf-jetbrains-mono-nerd brightnessctl spotify
 
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
 
@@ -187,6 +190,7 @@ ln -s $DOTFILES/.config/hypr      ~/.config/hypr
 ln -s $DOTFILES/.config/waybar    ~/.config/waybar
 ln -s $DOTFILES/.config/rofi      ~/.config/rofi
 ln -s $DOTFILES/.config/kitty     ~/.config/kitty
+ln -s $DOTFILES/.config/starship  ~/.config/starship
 ln -s $DOTFILES/.config/fastfetch ~/.config/fastfetch
 ln -s $DOTFILES/.config/btop      ~/.config/btop
 ln -s $DOTFILES/.config/wob       ~/.config/wob
@@ -195,20 +199,27 @@ ln -s $DOTFILES/.config/swaync    ~/.config/swaync
 ln -s $DOTFILES/.config/gtk-3.0   ~/.config/gtk-3.0
 ```
 
-### 4. Add wallpaper
+### 4. Enable Starship in shell
+
+```bash
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### 5. Add wallpaper
 
 ```bash
 mkdir -p ~/.config/hypr/wallpaper
 cp /path/to/your/wallpaper.png ~/.config/hypr/wallpaper/wallpaper.png
 ```
 
-### 5. Make scripts executable
+### 6. Make scripts executable
 
 ```bash
 chmod +x ~/.config/hypr/launch-wob.sh
 ```
 
-### 6. Apply Spicetify theme
+### 7. Apply Spicetify theme
 
 ```bash
 sudo chmod a+wr /opt/spotify
@@ -224,7 +235,7 @@ spicetify config color_scheme TealAnime
 spicetify apply
 ```
 
-### 7. Launch Hyprland
+### 8. Launch Hyprland
 
 ```bash
 Hyprland
@@ -294,6 +305,7 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 
 ## Notes
 
-- Spicetify theme is **not symlinked** — copy it manually after cloning (see step 6)
-- Wallpaper is **not tracked by git** — add it manually after cloning (see step 4)
+- Spicetify theme is **not symlinked** — copy it manually after cloning (see step 7)
+- Wallpaper is **not tracked by git** — add it manually after cloning (see step 5)
 - Theme switcher script lives at `~/Projects/theme-switch.sh` — not inside the dotfiles repo
+- Starship prompt requires `eval "$(starship init bash)"` in `~/.bashrc`

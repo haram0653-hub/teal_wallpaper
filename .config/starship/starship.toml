@@ -1,0 +1,49 @@
+# TealAnime Starship Theme
+
+format = """
+[╭─](fg:#6BBFB5) $os$username$hostname$directory$git_branch$git_status
+[╰─](fg:#6BBFB5) $character"""
+
+[os]
+disabled = true
+style = "fg:#F2A7B8"
+
+[username]
+show_always = true
+style_user = "fg:#6BBFB5 bold"
+style_root = "fg:#F2A7B8 bold"
+format = "[$user]($style) "
+
+[hostname]
+ssh_only = false
+style = "fg:#6BBFB5"
+format = "[@$hostname]($style) "
+
+[directory]
+style = "fg:#F2A7B8 bold"
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
+style = "fg:#6BBFB5"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "fg:#F2A7B8"
+format = "[$all_status$ahead_behind]($style) "
+
+[character]
+success_symbol = "[❯](fg:#6BBFB5)"
+error_symbol = "[❯](fg:#F2A7B8)"
+
+[cmd_duration]
+style = "fg:#6BBFB5"
+format = "[ $duration]($style) "
+
+[python]
+style = "fg:#F2A7B8"
+
+[nodejs]
+style = "fg:#6BBFB5"

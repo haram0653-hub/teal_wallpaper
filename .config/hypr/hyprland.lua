@@ -254,7 +254,7 @@ hl.bind(mainMod .. " + F",           hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + B",   hl.dsp.exec_cmd("pkill -SIGUSR2 -x waybar || waybar"))
 
 -- Session
-hl.bind("ALT + F4",                  hl.dsp.exec_cmd("wlogout -b 3 -c 350 -r 60 -p layer-shell"))
+hl.bind("ALT + F4",                  hl.dsp.exec_cmd("wlogout -b 5 -c 60 -T 400 -B 400 -L 260 -R 260 -p layer-shell"))
 hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("hyprlock"))
 
 -- Notifications
@@ -304,12 +304,12 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Volume (pushes the new level to the wob OSD; 0 when muted)
-local wobVolume = "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print ($3 == \"[MUTED]\") ? 0 : int($2*100)}' > $XDG_RUNTIME_DIR/wob.sock"
+-- Volume (volume.sh also pushes the level to the wob OSD; shared with waybar)
+local volume = home .. "/.config/hypr/volume.sh"
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && " .. wobVolume), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && " .. wobVolume),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && " .. wobVolume),     { locked = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volume .. " up"),   { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volume .. " down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd(volume .. " mute"), { locked = true })
 
 -- Media
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })

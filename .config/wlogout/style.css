@@ -43,9 +43,6 @@ button:active {
 #suspend {
     background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
 }
-#hibernate {
-    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
-}
 #shutdown {
     background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
 }

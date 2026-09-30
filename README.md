@@ -131,6 +131,7 @@ dotfiles/
 │   │   ├── hyprlock.conf         # Lock screen config
 │   │   ├── hypridle.conf         # Idle daemon config
 │   │   ├── launch-wob.sh         # WOB volume OSD launcher
+│   │   ├── volume.sh             # Volume up/down/mute + WOB OSD (keybinds and waybar)
 │   │   └── wallpaper/
 │   │       └── wallpaper.png     # Wallpaper (not tracked by git)
 │   ├── waybar/
@@ -229,7 +230,7 @@ cp /path/to/your/wallpaper.png ~/.config/hypr/wallpaper/wallpaper.png
 ### 6. Make scripts executable
 
 ```bash
-chmod +x ~/.config/hypr/launch-wob.sh
+chmod +x ~/.config/hypr/launch-wob.sh ~/.config/hypr/volume.sh
 ```
 
 ### 7. Apply Spicetify theme
@@ -330,6 +331,8 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 - The config is shared across machines: NVIDIA env vars are applied only when the NVIDIA driver is loaded, and the monitor uses the highest refresh rate on any output
 - Autostart also launches the polkit agent (`hyprpolkitagent` user service) and cliphist watchers for text and images
 - `SUPER + SHIFT + B` reloads Waybar in place (`SIGUSR2`), or starts it if it isn't running. After upgrading waybar itself, `pkill -x waybar` first so the new binary starts
+- Any `hyprctl dispatch` in other configs (hypridle, wlogout) must use Lua syntax, e.g. `hyprctl dispatch 'hl.dsp.dpms({ action = "off" })'`; the old `hyprctl dispatch dpms off` form is rejected
+- The power menu has no Hibernate button: this laptop only has zram swap, so there is nowhere to write the hibernation image
 - Waybar must be **`waybar-git`** until a release newer than 0.15.0: 0.15.0 sends legacy dispatch commands that Hyprland's Lua IPC rejects, so clicking workspace numbers silently does nothing ([Waybar#5008](https://github.com/Alexays/Waybar/issues/5008)). Switch back to `waybar` from `extra` once a fixed release ships
 - Validate changes with `Hyprland --verify-config -c ~/.config/hypr/hyprland.lua`
 - The Obsidian git-sync watcher (`~/.local/bin/obsidian-watch.sh`) is not in the repo; it only starts if that file exists

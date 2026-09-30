@@ -97,8 +97,8 @@
 ```bash
 # Official repos
 sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
-               swaync fastfetch btop playerctl gsimplecal starship \
-               ttf-jetbrains-mono-nerd brightnessctl spotify
+               swaync fastfetch btop playerctl gsimplecal starship thunar \
+               wireplumber ttf-jetbrains-mono-nerd brightnessctl spotify
 
 # AUR
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
@@ -115,7 +115,7 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 dotfiles/
 ├── .config/
 │   ├── hypr/
-│   │   ├── hyprland.conf         # Main Hyprland config
+│   │   ├── hyprland.lua          # Main Hyprland config (Lua, Hyprland >= 0.56)
 │   │   ├── hyprpaper.conf        # Wallpaper config
 │   │   ├── hyprlock.conf         # Lock screen config
 │   │   ├── hypridle.conf         # Idle daemon config
@@ -171,8 +171,8 @@ cd teal_wallpaper/dotfiles
 
 ```bash
 sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
-               swaync fastfetch btop playerctl gsimplecal starship \
-               ttf-jetbrains-mono-nerd brightnessctl spotify
+               swaync fastfetch btop playerctl gsimplecal starship thunar \
+               wireplumber ttf-jetbrains-mono-nerd brightnessctl spotify
 
 yay -S wlogout wob ttf-geist-mono-nerd hyprshot
 
@@ -255,32 +255,37 @@ Hyprland
 | `SUPER + P`          | Pseudo tile      |
 | `SUPER + J`          | Toggle split     |
 | `SUPER + S`          | Scratchpad       |
+| `SUPER + SHIFT + S`  | Move to scratchpad |
+| `SUPER + LMB drag`   | Move window      |
+| `SUPER + RMB drag`   | Resize window    |
 | `SUPER + Arrow keys` | Move focus       |
 
 ### Apps
 | Keys                | Action                        |
 |---------------------|-------------------------------|
 | `SUPER + Space`     | Rofi launcher                 |
-| `SUPER + E`         | File manager (Dolphin)        |
+| `SUPER + E`         | File manager (Thunar)         |
 | `SUPER + L`         | Lock screen (hyprlock)        |
-| `SUPER + SHIFT + E` | Power menu (wlogout)          |
+| `ALT + F4`          | Power menu (wlogout)          |
+| `SUPER + M`         | Exit Hyprland                 |
 | `SUPER + SHIFT + N` | Notification center (swaync)  |
 | `SUPER + SHIFT + B` | Reload Waybar                 |
 
 ### Workspaces
 | Keys                  | Action            |
 |-----------------------|-------------------|
-| `SUPER + 1–9`         | Switch workspace  |
-| `SUPER + SHIFT + 1–9` | Move to workspace |
+| `SUPER + 1–0`         | Switch workspace  |
+| `SUPER + SHIFT + 1–0` | Move to workspace |
+| 3-finger swipe        | Switch workspace  |
 | `SUPER + scroll`      | Cycle workspaces  |
 
 ### Media & System
 | Keys                      | Action              |
 |---------------------------|---------------------|
-| `Print`                   | Screenshot region   |
-| `SHIFT + Print`           | Screenshot window   |
+| `Print`                   | Screenshot window   |
+| `SHIFT + Print`           | Screenshot region   |
 | `FN + Vol Up/Down`        | Volume + WOB OSD    |
-| `FN + Mute`               | Toggle mute         |
+| `FN + Mute`               | Toggle mute + WOB OSD |
 | `FN + Play/Pause`         | Media play/pause    |
 | `FN + Next/Prev`          | Media next/previous |
 | `FN + Brightness Up/Down` | Screen brightness   |
@@ -305,6 +310,10 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 
 ## Notes
 
+- Hyprland config is **Lua** (`hyprland.lua`), which needs Hyprland 0.56 or newer. Hyprlock, hypridle and hyprpaper still use `.conf`
+- The config is shared across machines: NVIDIA env vars are applied only when the NVIDIA driver is loaded, and the monitor uses the highest refresh rate on any output
+- Validate changes with `Hyprland --verify-config -c ~/.config/hypr/hyprland.lua`
+- The Obsidian git-sync watcher (`~/.local/bin/obsidian-watch.sh`) is not in the repo; it only starts if that file exists
 - Spicetify theme is **not symlinked** — copy it manually after cloning (see step 7)
 - Wallpaper is **not tracked by git** — add it manually after cloning (see step 5)
 - Theme switcher script lives at `~/Projects/theme-switch.sh` — not inside the dotfiles repo

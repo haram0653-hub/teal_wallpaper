@@ -97,7 +97,7 @@
 | Font                  | Used in             | Source                      |
 |-----------------------|---------------------|-----------------------------|
 | JetBrainsMono Nerd Font | Kitty, Waybar, Rofi, Starship | `ttf-jetbrains-mono-nerd` |
-| Geist Mono (fallback) | Waybar              | `ttf-geist-mono-nerd`       |
+| Geist Mono (fallback) | Waybar              | `ttf-geist-mono` (AUR)      |
 
 ---
 
@@ -112,7 +112,7 @@ sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
                ttf-jetbrains-mono-nerd spotify
 
 # AUR
-yay -S wlogout ttf-geist-mono-nerd
+yay -S wlogout ttf-geist-mono
 
 # Spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
@@ -187,7 +187,7 @@ sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
                hyprshot brightnessctl wl-clipboard cliphist \
                ttf-jetbrains-mono-nerd spotify
 
-yay -S wlogout ttf-geist-mono-nerd
+yay -S wlogout ttf-geist-mono
 
 # Spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh

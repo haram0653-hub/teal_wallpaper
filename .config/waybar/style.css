@@ -1,7 +1,7 @@
 /* WAYBAR - Teal & Pink Anime */
 
 * {
-    font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+    font-family: 'JetBrainsMono Nerd Font', 'Geist Mono', monospace;
     font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.04em;
@@ -10,6 +10,7 @@
     min-height: 0;
 }
 
+/* Bar Container */
 window#waybar {
     background: transparent;
 }
@@ -18,11 +19,13 @@ window#waybar > box {
     background-color: rgba(239, 248, 247, 0.90);
     border: 1px solid rgba(107, 191, 181, 0.50);
     border-radius: 8px;
-    
     padding: 0 8px;
 }
 
-#workspaces { padding: 0 4px; }
+/* Workspaces */
+#workspaces {
+    padding: 0 4px;
+}
 
 #workspaces button {
     padding: 0 10px;
@@ -52,6 +55,7 @@ window#waybar > box {
     background: rgba(242, 167, 184, 0.20);
 }
 
+/* Clock */
 #clock {
     color: #2C3E3D;
     font-weight: 500;
@@ -59,29 +63,56 @@ window#waybar > box {
     padding: 0 12px;
 }
 
-#pulseaudio, #network, #battery, #tray {
+/* Right Modules */
+#pulseaudio,
+#network,
+#battery,
+#tray {
     color: #2C3E3D;
     padding: 0 10px;
     transition: color 0.15s ease;
 }
 
-#pulseaudio:hover, #network:hover, #battery:hover {
+#pulseaudio:hover,
+#network:hover,
+#battery:hover {
     color: #6BBFB5;
     font-weight: 500;
 }
 
-#pulseaudio.muted { color: rgba(44, 62, 61, 0.35); }
-#battery.warning { color: #b8860b; font-weight: 500; }
-#battery.critical { color: #c0392b; font-weight: 500; }
-#battery.charging { color: #6BBFB5; font-weight: 500; }
-#network.disconnected { color: rgba(44, 62, 61, 0.35); }
-#tray { padding: 0 8px; }
+#pulseaudio.muted {
+    color: rgba(44, 62, 61, 0.35);
+}
+
+#battery.warning {
+    color: #b8860b;
+    font-weight: 500;
+}
+
+#battery.critical {
+    color: #c0392b;
+    font-weight: 500;
+}
+
+#battery.charging {
+    color: #6BBFB5;
+    font-weight: 500;
+}
+
+#network.disconnected {
+    color: rgba(44, 62, 61, 0.35);
+}
+
+#tray {
+    padding: 0 8px;
+}
 
 #pulseaudio {
     border-left: 1px solid rgba(107, 191, 181, 0.30);
     margin-left: 4px;
 }
 
+/* Tooltip */
 tooltip {
     background: #EFF8F7;
     border: 1px solid #6BBFB5;
@@ -95,6 +126,7 @@ tooltip label {
     color: #2C3E3D;
 }
 
+/* Mpris */
 #mpris {
     color: #2C3E3D;
     padding: 0 12px;

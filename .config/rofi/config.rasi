@@ -9,7 +9,7 @@ configuration {
     display-drun:           "";
     display-run:            "";
     display-filebrowser:    "";
-    font:                   "JetBrains Mono 11";
+    font:                   "JetBrainsMono Nerd Font 11";
     kb-cancel:              "Escape,Super+space";
 }
 

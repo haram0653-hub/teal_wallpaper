@@ -210,13 +210,19 @@ ln -s $DOTFILES/.config/btop      ~/.config/btop
 ln -s $DOTFILES/.config/wob       ~/.config/wob
 ln -s $DOTFILES/.config/wlogout   ~/.config/wlogout
 ln -s $DOTFILES/.config/swaync    ~/.config/swaync
-ln -s $DOTFILES/.config/gtk-3.0   ~/.config/gtk-3.0
+
+# GTK: link only gtk.css (the folder also holds GTK bookmarks)
+mkdir -p ~/.config/gtk-3.0
+ln -s $DOTFILES/.config/gtk-3.0/gtk.css ~/.config/gtk-3.0/gtk.css
 ```
 
 ### 4. Enable Starship in shell
 
 ```bash
-echo 'eval "$(starship init bash)"' >> ~/.bashrc
+cat >> ~/.bashrc <<'EOS'
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+eval "$(starship init bash)"
+EOS
 source ~/.bashrc
 ```
 
@@ -339,4 +345,5 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 - Spicetify theme is **not symlinked** — copy it manually after cloning (see step 7)
 - Wallpaper is **not tracked by git** — add it manually after cloning (see step 5)
 - Theme switcher script lives at `~/Projects/theme-switch.sh` — not inside the dotfiles repo
-- Starship prompt requires `eval "$(starship init bash)"` in `~/.bashrc`
+- Starship prompt requires `STARSHIP_CONFIG` and `eval "$(starship init bash)"` in `~/.bashrc` (step 4). Without `STARSHIP_CONFIG`, starship looks for `~/.config/starship.toml` and silently uses its default theme
+- `gtk.css` only styles GTK calendars (the gsimplecal popup), so other GTK apps keep their normal theme

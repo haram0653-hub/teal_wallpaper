@@ -1,0 +1,52 @@
+/* GTK CALENDAR - Teal & Pink Anime
+ * Styles GtkCalendar widgets (the gsimplecal popup opened from the waybar clock).
+ * Scoped to `calendar` so other GTK apps keep their normal theme.
+ */
+
+calendar {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+    padding: 8px;
+    color: #2C3E3D;
+    background-color: #EFF8F7;
+    border: 1px solid rgba(107, 191, 181, 0.50);
+    border-radius: 8px;
+}
+
+/* Month / year header */
+calendar.header {
+    background-color: #D9EFED;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Prev / next arrows */
+calendar.button {
+    color: #6BBFB5;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+calendar.button:hover {
+    color: #c47f93;
+}
+
+/* Day names and week numbers */
+calendar.highlight {
+    color: #6BBFB5;
+    font-weight: 500;
+}
+
+/* Days from the previous / next month */
+calendar:indeterminate {
+    color: rgba(44, 62, 61, 0.30);
+}
+
+/* Today / selected day */
+calendar:selected {
+    background-color: rgba(242, 167, 184, 0.30);
+    color: #c47f93;
+    font-weight: 500;
+    border-radius: 4px;
+}

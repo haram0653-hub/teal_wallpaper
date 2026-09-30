@@ -35,7 +35,7 @@
 ### Bar & Launcher
 | App    | Role                       | Source  |
 |--------|----------------------------|---------|
-| Waybar | Status bar (floating pill) | `extra` |
+| Waybar | Status bar (floating pill) | `AUR` (`waybar-git`) |
 | Rofi   | App launcher               | `extra` |
 
 ### Terminal
@@ -106,13 +106,13 @@
 ```bash
 # Official repos
 sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
-               xdg-desktop-portal-hyprland waybar rofi kitty swaync fastfetch \
+               xdg-desktop-portal-hyprland rofi kitty swaync fastfetch \
                btop playerctl gsimplecal starship thunar wireplumber wob \
                hyprshot brightnessctl wl-clipboard cliphist \
                ttf-jetbrains-mono-nerd spotify
 
 # AUR
-yay -S wlogout ttf-geist-mono
+yay -S wlogout ttf-geist-mono waybar-git
 
 # Spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
@@ -182,12 +182,12 @@ cd teal_wallpaper/dotfiles
 
 ```bash
 sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
-               xdg-desktop-portal-hyprland waybar rofi kitty swaync fastfetch \
+               xdg-desktop-portal-hyprland rofi kitty swaync fastfetch \
                btop playerctl gsimplecal starship thunar wireplumber wob \
                hyprshot brightnessctl wl-clipboard cliphist \
                ttf-jetbrains-mono-nerd spotify
 
-yay -S wlogout ttf-geist-mono
+yay -S wlogout ttf-geist-mono waybar-git
 
 # Spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
@@ -329,7 +329,8 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 - Hyprland config is **Lua** (`hyprland.lua`), which needs Hyprland 0.56 or newer. Hyprlock, hypridle and hyprpaper still use `.conf`
 - The config is shared across machines: NVIDIA env vars are applied only when the NVIDIA driver is loaded, and the monitor uses the highest refresh rate on any output
 - Autostart also launches the polkit agent (`hyprpolkitagent` user service) and cliphist watchers for text and images
-- `SUPER + SHIFT + B` reloads Waybar in place (`SIGUSR2`), or starts it if it isn't running
+- `SUPER + SHIFT + B` reloads Waybar in place (`SIGUSR2`), or starts it if it isn't running. After upgrading waybar itself, `pkill -x waybar` first so the new binary starts
+- Waybar must be **`waybar-git`** until a release newer than 0.15.0: 0.15.0 sends legacy dispatch commands that Hyprland's Lua IPC rejects, so clicking workspace numbers silently does nothing ([Waybar#5008](https://github.com/Alexays/Waybar/issues/5008)). Switch back to `waybar` from `extra` once a fixed release ships
 - Validate changes with `Hyprland --verify-config -c ~/.config/hypr/hyprland.lua`
 - The Obsidian git-sync watcher (`~/.local/bin/obsidian-watch.sh`) is not in the repo; it only starts if that file exists
 - Spicetify theme is **not symlinked** — copy it manually after cloning (see step 7)

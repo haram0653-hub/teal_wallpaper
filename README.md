@@ -29,6 +29,8 @@
 | Hyprpaper | Wallpaper daemon        | `extra` |
 | Hypridle  | Idle daemon             | `extra` |
 | Hyprlock  | Lock screen             | `extra` |
+| hyprpolkitagent | Polkit auth prompts | `extra` |
+| xdg-desktop-portal-hyprland | Screen sharing | `extra` |
 
 ### Bar & Launcher
 | App    | Role                       | Source  |
@@ -56,7 +58,8 @@
 ### Volume OSD
 | App | Role                            | Source  |
 |-----|---------------------------------|---------|
-| Wob | Volume / brightness overlay bar | `extra` |
+| Wob           | Volume / brightness overlay bar | `extra` |
+| Brightnessctl | Backlight control               | `extra` |
 
 ### Power Menu
 | App     | Role                          | Source |
@@ -76,7 +79,13 @@
 ### Screenshot
 | App      | Role            | Source |
 |----------|-----------------|--------|
-| Hyprshot | Screenshot tool | `AUR`  |
+| Hyprshot | Screenshot tool | `extra` |
+
+### Clipboard
+| App          | Role                          | Source  |
+|--------------|-------------------------------|---------|
+| wl-clipboard | Wayland clipboard CLI         | `extra` |
+| Cliphist     | Clipboard history (rofi menu) | `extra` |
 
 ### Music
 | App       | Role                 | Source |
@@ -96,12 +105,14 @@
 
 ```bash
 # Official repos
-sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
-               swaync fastfetch btop playerctl gsimplecal starship thunar \
-               wireplumber ttf-jetbrains-mono-nerd brightnessctl spotify
+sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
+               xdg-desktop-portal-hyprland waybar rofi kitty swaync fastfetch \
+               btop playerctl gsimplecal starship thunar wireplumber wob \
+               hyprshot brightnessctl wl-clipboard cliphist \
+               ttf-jetbrains-mono-nerd spotify
 
 # AUR
-yay -S wlogout wob ttf-geist-mono-nerd hyprshot
+yay -S wlogout ttf-geist-mono-nerd
 
 # Spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
@@ -170,11 +181,13 @@ cd teal_wallpaper/dotfiles
 ### 2. Install dependencies
 
 ```bash
-sudo pacman -S hyprland hyprpaper hypridle hyprlock waybar rofi kitty \
-               swaync fastfetch btop playerctl gsimplecal starship thunar \
-               wireplumber ttf-jetbrains-mono-nerd brightnessctl spotify
+sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
+               xdg-desktop-portal-hyprland waybar rofi kitty swaync fastfetch \
+               btop playerctl gsimplecal starship thunar wireplumber wob \
+               hyprshot brightnessctl wl-clipboard cliphist \
+               ttf-jetbrains-mono-nerd spotify
 
-yay -S wlogout wob ttf-geist-mono-nerd hyprshot
+yay -S wlogout ttf-geist-mono-nerd
 
 # Spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
@@ -259,6 +272,8 @@ Hyprland
 | `SUPER + LMB drag`   | Move window      |
 | `SUPER + RMB drag`   | Resize window    |
 | `SUPER + Arrow keys` | Move focus       |
+| `SUPER + SHIFT + Arrows` | Swap window  |
+| `SUPER + CTRL + Arrows`  | Resize window |
 
 ### Apps
 | Keys                | Action                        |
@@ -269,6 +284,7 @@ Hyprland
 | `ALT + F4`          | Power menu (wlogout)          |
 | `SUPER + M`         | Exit Hyprland                 |
 | `SUPER + SHIFT + N` | Notification center (swaync)  |
+| `SUPER + V`         | Clipboard history (cliphist)  |
 | `SUPER + SHIFT + B` | Reload Waybar                 |
 
 ### Workspaces
@@ -288,7 +304,7 @@ Hyprland
 | `FN + Mute`               | Toggle mute + WOB OSD |
 | `FN + Play/Pause`         | Media play/pause    |
 | `FN + Next/Prev`          | Media next/previous |
-| `FN + Brightness Up/Down` | Screen brightness   |
+| `FN + Brightness Up/Down` | Brightness + WOB OSD |
 
 ---
 
@@ -312,6 +328,8 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 
 - Hyprland config is **Lua** (`hyprland.lua`), which needs Hyprland 0.56 or newer. Hyprlock, hypridle and hyprpaper still use `.conf`
 - The config is shared across machines: NVIDIA env vars are applied only when the NVIDIA driver is loaded, and the monitor uses the highest refresh rate on any output
+- Autostart also launches the polkit agent (`hyprpolkitagent` user service) and cliphist watchers for text and images
+- `SUPER + SHIFT + B` reloads Waybar in place (`SIGUSR2`), or starts it if it isn't running
 - Validate changes with `Hyprland --verify-config -c ~/.config/hypr/hyprland.lua`
 - The Obsidian git-sync watcher (`~/.local/bin/obsidian-watch.sh`) is not in the repo; it only starts if that file exists
 - Spicetify theme is **not symlinked** — copy it manually after cloning (see step 7)

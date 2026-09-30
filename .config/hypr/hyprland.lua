@@ -33,6 +33,13 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
     hl.exec_cmd(home .. "/.config/hypr/launch-wob.sh")
 
+    -- Polkit agent: password prompts for GUI apps (mounting drives in Thunar, etc.)
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+
+    -- Clipboard history (text and images)
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+
     -- Obsidian git sync on close (script lives outside the repo; only on machines that have it)
     local obsidianWatch = home .. "/.local/bin/obsidian-watch.sh"
     if file_exists(obsidianWatch) then
@@ -173,11 +180,6 @@ hl.gesture({
     action    = "workspace",
 })
 
-hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
-})
-
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
@@ -249,7 +251,7 @@ hl.bind(mainMod .. " + SPACE",       hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",           hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",           hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F",           hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + SHIFT + B",   hl.dsp.exec_cmd("pkill -x waybar; waybar"))
+hl.bind(mainMod .. " + SHIFT + B",   hl.dsp.exec_cmd("pkill -SIGUSR2 -x waybar || waybar"))
 
 -- Session
 hl.bind("ALT + F4",                  hl.dsp.exec_cmd("wlogout -b 3 -c 350 -r 60 -p layer-shell"))
@@ -257,6 +259,9 @@ hl.bind(mainMod .. " + L",           hl.dsp.exec_cmd("hyprlock"))
 
 -- Notifications
 hl.bind(mainMod .. " + SHIFT + N",   hl.dsp.exec_cmd("swaync-client -t"))
+
+-- Clipboard history
+hl.bind(mainMod .. " + V",           hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"))
 
 -- Screenshots
 hl.bind("PRINT",                     hl.dsp.exec_cmd("hyprshot -m window -o ~/Pictures"))
@@ -267,6 +272,18 @@ hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+-- Swap windows
+hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.swap({ direction = "down" }))
+
+-- Resize windows
+hl.bind(mainMod .. " + CTRL + left",  hl.dsp.window.resize({ x = -40, y = 0,   relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.resize({ x = 40,  y = 0,   relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + up",    hl.dsp.window.resize({ x = 0,   y = -40, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + down",  hl.dsp.window.resize({ x = 0,   y = 40,  relative = true }), { repeating = true })
 
 -- Workspaces: SUPER + [0-9] switch, SUPER + SHIFT + [0-9] move window
 for i = 1, 10 do
@@ -301,6 +318,8 @@ hl.bind("XF86AudioStop",  hl.dsp.exec_cmd("playerctl stop"),       { locked = tr
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
--- Brightness
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+-- Brightness (also pushed to the wob OSD)
+local wobBrightness = "brightnessctl -m | cut -d, -f4 | tr -d % > $XDG_RUNTIME_DIR/wob.sock"
+
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+ && " .. wobBrightness), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%- && " .. wobBrightness), { locked = true, repeating = true })

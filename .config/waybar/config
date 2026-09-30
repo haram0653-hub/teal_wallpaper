@@ -65,7 +65,7 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {status}",
+        "format": "{capacity}%",
         "format-charging": "{capacity}% chg",
         "format-plugged": "{capacity}% ac",
         "format-full": "full",

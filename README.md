@@ -334,8 +334,9 @@ The script automatically relinks all symlinks, changes the wallpaper and restart
 ## Notes
 
 - Hyprland config is **Lua** (`hyprland.lua`), which needs Hyprland 0.56 or newer. Hyprlock, hypridle and hyprpaper still use `.conf`
-- The config is shared across machines: NVIDIA env vars are applied only when the NVIDIA driver is loaded, and the monitor uses the highest refresh rate on any output
-- Autostart also launches the polkit agent (`hyprpolkitagent` user service) and cliphist watchers for text and images
+- The config is shared across machines: NVIDIA env vars are applied only when the NVIDIA driver is loaded. The desktop monitor (`DP-1`, LG 27GN7) is pinned to `1920x1080@239.76`; any other output uses `highrr`. Don't rely on `highrr` alone for the LG: it lists `1024x768@239.99`, which beats 1080p's 239.76 Hz, so Hyprland would pick 1024x768. Check modes with `hyprctl monitors all`
+- Hypridle dims the screen at 2.5 min, locks at 5 min and turns the display off at 6 min. Auto-suspend (30 min) is commented out on purpose; uncomment the last listener in `hypridle.conf` to restore it
+- Autostart also launches the polkit agent (`hyprpolkitagent` user service) and cliphist watchers for text and images. If you install these mid-session, start them by hand (`systemctl --user start hyprpolkitagent`) or log in again
 - `SUPER + SHIFT + B` reloads Waybar in place (`SIGUSR2`), or starts it if it isn't running. After upgrading waybar itself, `pkill -x waybar` first so the new binary starts
 - Any `hyprctl dispatch` in other configs (hypridle, wlogout) must use Lua syntax, e.g. `hyprctl dispatch 'hl.dsp.dpms({ action = "off" })'`; the old `hyprctl dispatch dpms off` form is rejected
 - The power menu has no Hibernate button: this laptop only has zram swap, so there is nowhere to write the hibernation image

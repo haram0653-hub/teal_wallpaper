@@ -68,7 +68,15 @@ hl.env("HYPRCURSOR_SIZE", "24")
 ---- MONITOR ----
 -----------------
 
--- Any output, highest refresh rate (240Hz on the desktop, native panel on the laptop)
+-- Desktop LG 27GN7: pinned explicitly, since "highrr" picks 1024x768@239.99 over 1920x1080@239.76
+hl.monitor({
+    output   = "DP-1",
+    mode     = "1920x1080@239.76",
+    position = "auto",
+    scale    = 1,
+})
+
+-- Any other output, highest refresh rate (native panel on the laptop)
 hl.monitor({
     output   = "",
     mode     = "highrr",

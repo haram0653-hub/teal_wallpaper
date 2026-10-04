@@ -16,6 +16,7 @@
     ],
     "modules-right": [
         "pulseaudio",
+        "custom/display",
         "network",
         "battery",
         "clock",
@@ -51,6 +52,13 @@
         "on-scroll-down": "~/.config/hypr/volume.sh down",
         "scroll-step": 5,
         "tooltip-format": "{desc}"
+    },
+
+    "custom/display": {
+        "exec": "~/.config/hypr/display-icon.sh",
+        "interval": 3,
+        "on-click": "~/.config/hypr/display-mode.sh",
+        "tooltip-format": "Extend / duplicate displays (Super+P)"
     },
 
     "network": {

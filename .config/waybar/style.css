@@ -65,6 +65,7 @@ window#waybar > box {
 
 /* Right Modules */
 #pulseaudio,
+#custom-display,
 #network,
 #battery,
 #tray {
@@ -74,6 +75,7 @@ window#waybar > box {
 }
 
 #pulseaudio:hover,
+#custom-display:hover,
 #network:hover,
 #battery:hover {
     color: #6BBFB5;

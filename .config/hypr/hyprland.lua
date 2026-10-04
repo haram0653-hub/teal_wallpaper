@@ -84,6 +84,22 @@ hl.monitor({
     scale    = 1,
 })
 
+-- Laptop panel first, so externals land to its right (not left) on reload
+hl.monitor({
+    output   = "eDP-1",
+    mode     = "highrr",
+    position = "0x0",
+    scale    = 1,
+})
+
+-- TV over HDMI: highrr would pick its 720x400@70 mode
+hl.monitor({
+    output   = "HDMI-A-1",
+    mode     = "1920x1080@60",
+    position = "auto-right",
+    scale    = 1,
+})
+
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
@@ -256,10 +272,10 @@ hl.bind(mainMod .. " + M",           hl.dsp.exec_cmd("command -v hyprshutdown >/
 hl.bind(mainMod .. " + E",           hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + T",           hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SPACE",       hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P",           hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",           hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F",           hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + B",   hl.dsp.exec_cmd("pkill -SIGUSR2 -x waybar || waybar"))
+hl.bind(mainMod .. " + P",           hl.dsp.exec_cmd("~/.config/hypr/display-mode.sh"))
 
 -- Session
 hl.bind("ALT + F4",                  hl.dsp.exec_cmd("wlogout -b 5 -c 60 -T 400 -B 400 -L 260 -R 260 -p layer-shell"))

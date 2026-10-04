@@ -46,6 +46,7 @@
         "format": "vol {volume}%",
         "format-muted": "muted",
         "on-click": "~/.config/hypr/volume.sh mute",
+        "on-click-right": "~/.config/hypr/audio-output.sh",
         "on-scroll-up": "~/.config/hypr/volume.sh up",
         "on-scroll-down": "~/.config/hypr/volume.sh down",
         "scroll-step": 5,

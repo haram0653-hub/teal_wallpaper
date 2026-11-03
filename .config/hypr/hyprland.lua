@@ -254,6 +254,26 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name   = "float-thunar-progress",
+    match  = { class = "thunar", title = "^File Operation Progress$" },
+    float  = true,
+    size   = "480 160",
+    center = true,
+})
+
+hl.window_rule({
+    name  = "float-thunar-dialogs",
+    match = { class = "thunar", title = "^(Rename .*|.* - Properties|Confirm to replace files|Create New (Folder|File).*|Bulk Rename.*|Attention)$" },
+    float = true,
+})
+
+hl.window_rule({
+    name    = "opacity-thunar",
+    match   = { class = "thunar" },
+    opacity = 0.92,
+})
+
+hl.window_rule({
     name    = "opacity-kitty",
     match   = { class = "kitty" },
     opacity = 0.92,

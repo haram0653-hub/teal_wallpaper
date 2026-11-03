@@ -1,0 +1,215 @@
+/* TealPink - GTK3 theme matching the Teal & Pink Anime desktop.
+ * Built on top of Adwaita; only colours/shapes are overridden.
+ */
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+
+@define-color tp_bg      #EFF8F7;
+@define-color tp_bg_alt  #D9EFED;
+@define-color tp_fg      #2C3E3D;
+@define-color tp_teal    #6BBFB5;
+@define-color tp_pink    #F2A7B8;
+@define-color tp_pink_dk #c47f93;
+
+/* Base */
+window, .background, dialog, messagedialog, popover, .view, iconview, treeview, textview text {
+    background-color: @tp_bg;
+    color: @tp_fg;
+}
+* { font-family: "JetBrainsMono Nerd Font"; }
+label { text-shadow: none; }
+*:disabled, label:disabled { color: alpha(@tp_fg, 0.40); }
+selection, *:selected, .view:selected, iconview:selected, treeview:selected,
+.view:selected:focus, row:selected {
+    background-color: alpha(@tp_pink, 0.35);
+    color: @tp_pink_dk;
+}
+.dim-label { color: alpha(@tp_fg, 0.60); }
+link, *:link { color: @tp_teal; }
+
+/* Bars */
+headerbar, menubar, toolbar, actionbar, statusbar, .titlebar, searchbar > revealer > box {
+    background-color: @tp_bg_alt;
+    background-image: none;
+    color: @tp_fg;
+    border-color: alpha(@tp_teal, 0.30);
+    box-shadow: none;
+}
+headerbar:backdrop, .titlebar:backdrop { background-color: @tp_bg_alt; }
+statusbar { border-top: 1px solid alpha(@tp_teal, 0.30); color: alpha(@tp_fg, 0.70); }
+
+/* Menus */
+menu, .menu, .context-menu {
+    background-color: @tp_bg;
+    border: 1px solid alpha(@tp_teal, 0.50);
+    padding: 4px;
+}
+menu menuitem, menubar > menuitem { color: @tp_fg; padding: 4px 8px; border-radius: 4px; }
+menu menuitem:hover, menubar > menuitem:hover { background-color: alpha(@tp_pink, 0.30); color: @tp_pink_dk; }
+menu separator { background-color: alpha(@tp_teal, 0.30); }
+tooltip, tooltip.background { background-color: @tp_fg; color: @tp_bg; border-radius: 6px; }
+tooltip * { color: @tp_bg; }
+
+/* Buttons */
+button {
+    background-image: none;
+    background-color: alpha(@tp_teal, 0.12);
+    color: @tp_fg;
+    border: 1px solid alpha(@tp_teal, 0.40);
+    border-radius: 6px;
+    box-shadow: none;
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+}
+button:hover { background-color: alpha(@tp_teal, 0.25); border-color: @tp_teal; }
+button:checked, button:active {
+    background-color: alpha(@tp_pink, 0.30);
+    border-color: alpha(@tp_pink, 0.70);
+    color: @tp_pink_dk;
+}
+button.flat, toolbar button, headerbar button, .path-bar button, .linked.path-bar button {
+    background-color: transparent;
+    border-color: transparent;
+}
+toolbar button:hover, headerbar button:hover, button.flat:hover {
+    background-color: alpha(@tp_teal, 0.20);
+    border-color: alpha(@tp_teal, 0.40);
+}
+toolbar button image, headerbar button image { color: @tp_teal; }
+button.suggested-action { background-color: @tp_teal; color: #FFFFFF; border-color: @tp_teal; }
+button.suggested-action:hover { background-color: shade(@tp_teal, 0.9); }
+button.destructive-action { background-color: @tp_pink; color: #FFFFFF; border-color: @tp_pink; }
+button.titlebutton { background: none; border: none; color: @tp_teal; }
+
+/* Entries */
+entry, spinbutton:not(.vertical) {
+    background-color: #FFFFFF;
+    background-image: none;
+    color: @tp_fg;
+    border: 1px solid alpha(@tp_teal, 0.50);
+    border-radius: 6px;
+    box-shadow: none;
+}
+entry:focus, spinbutton:focus { border-color: @tp_pink; box-shadow: none; }
+entry selection { background-color: alpha(@tp_pink, 0.45); color: @tp_fg; }
+entry image { color: @tp_teal; }
+
+/* Sidebars */
+.sidebar, .sidebar .view, .sidebar treeview, placessidebar, placessidebar list, stacksidebar list,
+.shortcuts-pane, .shortcuts-pane treeview {
+    background-color: @tp_bg_alt;
+    color: @tp_fg;
+    border: none;
+}
+placessidebar row:hover, .sidebar row:hover { background-color: alpha(@tp_teal, 0.20); }
+
+/* Lists */
+list, listbox { background-color: @tp_bg; }
+row:hover { background-color: alpha(@tp_teal, 0.15); }
+treeview header button {
+    background-color: @tp_bg_alt;
+    color: @tp_teal;
+    font-weight: 500;
+    border: none;
+    border-bottom: 1px solid alpha(@tp_teal, 0.30);
+    border-radius: 0;
+}
+rubberband, .rubberband { background-color: alpha(@tp_pink, 0.20); border: 1px solid @tp_pink; }
+
+/* Tabs */
+notebook header { background-color: @tp_bg_alt; border: none; }
+notebook tab { color: alpha(@tp_fg, 0.60); padding: 4px 10px; border: none; }
+notebook tab:checked { color: @tp_pink_dk; background-color: @tp_bg; box-shadow: inset 0 -2px @tp_pink; }
+notebook > stack:not(:only-child) { background-color: @tp_bg; }
+
+/* Progress / sliders / levels */
+progressbar trough, scale trough, levelbar trough {
+    background-color: alpha(@tp_teal, 0.20);
+    background-image: none;
+    border: none;
+    border-radius: 6px;
+    min-height: 6px;
+}
+progressbar progress, scale highlight, levelbar block.filled {
+    background-color: @tp_teal;
+    background-image: none;
+    border: none;
+    border-radius: 6px;
+    min-height: 6px;
+}
+scale slider { background-color: #FFFFFF; background-image: none; border: 2px solid @tp_pink; box-shadow: none; }
+
+/* Checks, radios, switches */
+check, radio { background-image: none; background-color: #FFFFFF; border: 1px solid alpha(@tp_teal, 0.60); }
+check:checked, radio:checked { background-color: @tp_teal; border-color: @tp_teal; color: #FFFFFF; }
+switch { background-color: alpha(@tp_teal, 0.25); background-image: none; border: none; border-radius: 12px; }
+switch:checked { background-color: @tp_pink; }
+switch slider { background-color: #FFFFFF; background-image: none; border: none; border-radius: 10px; box-shadow: none; }
+
+/* Separators, frames */
+separator, paned > separator { background-color: alpha(@tp_teal, 0.30); background-image: none; }
+paned > separator { min-width: 1px; min-height: 1px; }
+frame > border, .frame, scrolledwindow viewport.frame { border-color: alpha(@tp_teal, 0.30); }
+
+/* Scrollbars */
+scrollbar { background-color: transparent; border: none; }
+scrollbar slider { background-color: alpha(@tp_teal, 0.50); border-radius: 8px; min-width: 6px; min-height: 6px; border: none; }
+scrollbar slider:hover { background-color: @tp_pink; }
+
+/* Window decorations (CSD dialogs) */
+decoration { border-radius: 8px; box-shadow: 0 2px 8px alpha(@tp_fg, 0.25); }
+
+/* ---------- Unfocused (backdrop) + focus states ----------
+ * Adwaita has more specific :backdrop / :focus rules; pin them to the same colours
+ * so windows look identical whether focused or not.
+ */
+window:backdrop, .background:backdrop, dialog:backdrop, .view:backdrop,
+iconview:backdrop, treeview:backdrop, textview text:backdrop {
+    background-color: @tp_bg;
+    color: @tp_fg;
+}
+headerbar:backdrop, menubar:backdrop, toolbar:backdrop, actionbar:backdrop,
+statusbar:backdrop, .titlebar:backdrop,
+window:backdrop menubar, window:backdrop toolbar, window:backdrop statusbar {
+    background-color: @tp_bg_alt;
+    background-image: none;
+    color: @tp_fg;
+}
+menubar > menuitem:backdrop, menubar > menuitem label:backdrop { color: @tp_fg; }
+
+.sidebar:backdrop, .sidebar .view:backdrop, .sidebar treeview:backdrop,
+placessidebar:backdrop, placessidebar list:backdrop,
+.shortcuts-pane:backdrop, .shortcuts-pane treeview:backdrop {
+    background-color: @tp_bg_alt;
+    color: @tp_fg;
+}
+
+*:selected:backdrop, selection:backdrop,
+.view:selected, .view:selected:focus, .view:selected:backdrop,
+treeview.view:selected, treeview.view:selected:focus, treeview.view:selected:backdrop,
+iconview:selected:focus, iconview:selected:backdrop,
+row:selected:backdrop, row:selected:focus,
+.sidebar .view:selected, .sidebar .view:selected:focus, .sidebar .view:selected:backdrop,
+.sidebar treeview.view:selected, .sidebar treeview.view:selected:backdrop,
+placessidebar row:selected, placessidebar row:selected:backdrop {
+    background-color: alpha(@tp_pink, 0.35);
+    color: @tp_pink_dk;
+}
+treeview.view:selected image, .view:selected image, row:selected image { color: @tp_pink_dk; }
+
+entry:backdrop, spinbutton:backdrop {
+    background-color: #FFFFFF;
+    color: @tp_fg;
+    border-color: alpha(@tp_teal, 0.50);
+}
+button:backdrop { background-image: none; color: @tp_fg; text-shadow: none; }
+toolbar button:backdrop image, headerbar button:backdrop image { color: @tp_teal; }
+button.flat:backdrop, toolbar button:backdrop, headerbar button:backdrop {
+    background-color: transparent;
+    border-color: transparent;
+}
+label:backdrop { color: inherit; }
+treeview header button:backdrop { background-color: @tp_bg_alt; color: @tp_teal; }
+notebook header:backdrop { background-color: @tp_bg_alt; }
+notebook tab:checked:backdrop { color: @tp_pink_dk; background-color: @tp_bg; }
+scrollbar slider:backdrop { background-color: alpha(@tp_teal, 0.40); }
+progressbar progress:backdrop, scale highlight:backdrop { background-color: @tp_teal; }

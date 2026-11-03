@@ -1,5 +1,6 @@
 # Wallpaper (too large)
 .config/hypr/wallpaper.*
+.config/hypr/wallpaper/wallpaper-laptop.png
 
 # Secrets
 .config/hypr/private.conf
